@@ -23,8 +23,8 @@ public class KakaoLocalService {
     public Mono<KakaoSearchResponseDto> searchGyms(double lat, double lon, int radius) {
         return webClient.get()
                 .uri(uriBuilder -> uriBuilder
-                        .path("/v2/local/search/category.json")
-                        .queryParam("category_group_code", "CT1") // 헬스장 카테고리
+                        .path("/v2/local/search/keyword.json") // ✅ keyword 검색 API로 변경
+                        .queryParam("query", "헬스장")
                         .queryParam("x", lon)
                         .queryParam("y", lat)
                         .queryParam("radius", radius)
@@ -38,4 +38,5 @@ public class KakaoLocalService {
                 )
                 .bodyToMono(KakaoSearchResponseDto.class);
     }
+
 }
